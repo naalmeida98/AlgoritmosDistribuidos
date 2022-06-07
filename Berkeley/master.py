@@ -52,7 +52,23 @@ def synchronizeTheClocks ():
         print("----- Novo ciclo iniciado -----")
         print("----- Número de cliente que precisam ser sicronizados:" + str (len (client)) )
 
-       # if len(client) > 0:
+        if len(client) > 0: 
+            average_clock_difference = getAverageClockDifference()  
+            for client_addr, cli in client.items():
+                try:
+                    synchronized_time = \
+                         datetime.datetime.now() + average_clock_difference
+  
+                    cli['connector'].send(str(synchronized_time).encode())
+  
+                except Exception as error:
+                    print("Erro no envio de tempo para " + str(client_addr))
+  
+        else :
+            print("--------- Não há clientes ---------")
+  
+        print("\n\n") 
+        time.sleep(5)
 
 #Conexão criada na mesma porta
 def initMaster(port = 8080):
