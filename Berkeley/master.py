@@ -18,9 +18,9 @@ def whatTimeTheClock (address, connector):
 
 
         client[address]={
-            "timeClock": timeClock,
-            "timeDifferentWatches": timeDifferentWatches,
-            "connector": connector
+            "timeClock"         : timeClock,
+            "timeDifference"    : timeDifferentWatches,
+            "connector"         : connector
         }
 
         print("------ Dados do cliente atualiados com " + str(address) + "-------")
