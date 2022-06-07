@@ -12,8 +12,9 @@ def whatTimeTheClock (address, connector):
     while True:
 
         timeClockString =  connector.recv(1024).decode()  #recv=  o valor de  retorno é um objeto em bytes ; Para descodificar para a string usa  o decode;
-        timeClock= parser.parse(timeClockString)
-        timeDifferentWatches=  datetime.datetime.now() - timeClock
+        timeClock = parser.parse(timeClockString)
+        timeDifferentWatches =  datetime.datetime.now() - \
+                                                    timeClock
 
 
         client[address]={
@@ -33,7 +34,7 @@ def  startConnection(master):
 
         print ("------ Endereço dos escravos: " + salveAddress + "foi conectado com sucesso! ------")
 
-        currentTread =  threading.Thread( target = whatTimeTheClock, args = (masterConnector,salveAddress,))
+        currentTread =  threading.Thread( target = whatTimeTheClock, args = (masterConnector, salveAddress, ))
 
         currentTread.start()
 
@@ -57,7 +58,8 @@ def synchronizeTheClocks():
             for client_addr, cli in client.items():
                 try:
                     synchronized_time = \
-                         datetime.datetime.now() + average_clock_difference
+                         datetime.datetime.now() + \
+                                            average_clock_difference
   
                     cli['connector'].send(str(synchronized_time).encode())
   
