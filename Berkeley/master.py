@@ -25,7 +25,7 @@ def whatTimeTheClock (address, connector):
         print("------ Dados do cliente atualiados com " + str(address) + "-------")
         time.sleep(5)
 
-def  startConnectin (master):
+def  startConnection(master):
     # encontra a hora do relogio nos clientes/escravos
     while True:
         masterConnector, address = master.accept() #accept soquete do Python aceita uma solicitação de conexão recebida de um cliente TCP.
@@ -46,7 +46,7 @@ def getAverageClockDifference():
 
     return averageClockDiferrence
 
-def synchronizeTheClocks ():
+def synchronizeTheClocks():
 
     while True:
         print("----- Novo ciclo iniciado -----")
@@ -83,13 +83,13 @@ def initMaster(port = 8080):
     print("-- Servidor de relógio iniciado --\n")
   
     print("- Iniciando conexões -\n")
-    #ajustar os parâmetros
-    masterThread = threading.Thread()
+
+    masterThread = threading.Thread(target = startConnection, args = (master, ))
     masterThread.start()
   
     print("Começando a sincronização paralelamente...\n")
-    #ajustar os parâmetros
-    syncThread = threading.Thread() #tem que colocar um parâmetro
+
+    syncThread = threading.Thread(target = synchronizeTheClocks, args = ()) 
     syncThread.start()
    
    

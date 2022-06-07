@@ -25,13 +25,13 @@ def initSlave(port = 8080):
   
     print("----- Iniciando slave -----")
     print("Recebendo dados do servidor\n")
-    #ajustar os parâmetros
-    sendTime = threading.Thread()
+
+    sendTime = threading.Thread(target = startSendingTime, args = (slave, ))
     sendTime.start()
   
     print("Recebendo tempo sincronizado com o master.\n")
-    #ajustar os parâmetros
-    receiveTime = threading.Thread()
+
+    receiveTime = threading.Thread(target = startReceivingTime, args = (slave, ))
     receiveTime.start()  
 
 
