@@ -39,7 +39,7 @@ def  startConnection(master):
 
 def getAverageClockDifference():
     currentClient = client.copy()
-    timeDifferenceList =  list(client['timeDifference'] for clientAddress, c in client.items()) #conferir os parâmetros
+    timeDifferenceList =  list(cli['timeDifference'] for clientAddress, cli in client.items()) #conferir os parâmetros
     sumOfClockDifference = sum (timeDifferenceList, datetime.timedelta(0,0))
 
     averageClockDiferrence = sumOfClockDifference/len(client)  #CONFERI
@@ -50,7 +50,7 @@ def synchronizeTheClocks():
 
     while True:
         print("----- Novo ciclo iniciado -----")
-        print("----- Número de cliente que precisam ser sicronizados:" + str (len (client)) )
+        print("----- Número de cliente que precisam ser sicronizados:" + str (len(client)) )
 
         if len(client) > 0: 
             average_clock_difference = getAverageClockDifference()  
