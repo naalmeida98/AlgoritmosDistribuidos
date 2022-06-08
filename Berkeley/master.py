@@ -7,7 +7,7 @@ import time
 
 client = {}
 
-def whatTimeTheClock (address, connector):
+def whatTimeTheClock (connector, address):
 
     while True:
 
@@ -23,7 +23,7 @@ def whatTimeTheClock (address, connector):
             "connector"         : connector
         }
 
-        print("------ Dados do cliente atualiados com " + str(address) + "-------")
+        print("------ Dados do cliente atualizados com " + str(address) + "-------")
         time.sleep(5)
 
 def  startConnection(master):
@@ -50,8 +50,9 @@ def getAverageClockDifference():
 def synchronizeTheClocks():
 
     while True:
-        print("----- Novo ciclo iniciado -----")
-        print("----- Número de cliente que precisam ser sicronizados:" + str (len(client)) )
+        print("\n\n--------------------------------------------------\n")
+        print("----- NOVO CICLO INICIADO -----")
+        print("----- Número de cliente que precisam ser sincronizados:" + str (len(client)) )
 
         if len(client) > 0: 
             average_clock_difference = getAverageClockDifference()  
