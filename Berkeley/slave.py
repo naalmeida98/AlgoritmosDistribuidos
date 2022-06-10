@@ -6,15 +6,21 @@ import socket
 import time
 
 def startSendingTime(slaveClient):
-    while True:
-        slaveClient.send(str(datetime.datetime.now()).encode())
-        print(" ----- Tempo recente recebido com sucesso ------")
-        time.sleep(5)
+    try:
+        while True:
+            slaveClient.send(str(datetime.datetime.now()).encode())
+            print(" ----- Tempo recente recebido com sucesso ------")
+            time.sleep(5)
+    except:
+        print("Master desconectado");
 
 def startReceivingTime(slaveClient):
-    while True:
-        SynchronizedTime = parser.parse(slaveClient.recv(1024).decode())
-        print(" ------------- Tempo sincronizado no cliente é: " + str(SynchronizedTime) + "---------")
+    try:
+        while True:
+            SynchronizedTime = parser.parse(slaveClient.recv(1024).decode())
+            print(" ------------- Tempo sincronizado no cliente é: " + str(SynchronizedTime) + "---------")
+    except:
+       print("Master desconectado");  
 
 #Conexão criada na mesma porta
 def initSlave(port = 8080):
